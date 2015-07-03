@@ -17,7 +17,7 @@ character = (Character*)[CCBReader load:@"Character"];
 
 -(void)touchBegan:(CCTouch*)touch withEvent:(CCTouchEvent*)event{
     //will get called everytime player touches screen
-    [character flap];
+
     
 }
 
