@@ -164,13 +164,20 @@
             bush.position = ccp(bush.position.x + 2 * bush.contentSize.width, bush.position.y);
         }
     }
-    //move and loop the clouds
-    for(CCNode *cloud in _clouds){
-        cloud.position = ccp(cloud.position.x- (cloud.physicsBody.velocity.x * delta), cloud.position.y);
-        if(cloud.position.x <= (-1 * cloud.contentSize.width)){
-            cloud.position = ccp(cloud.position.x + 2 * cloud.contentSize.width, cloud.position.y);
+    // move and loop the clouds
+    for (CCNode *cloud in _clouds) {
+        // move the cloud
+        cloud.position = ccp(cloud.position.x -
+                             (character.physicsBody.velocity.x * delta), cloud.position.y);
+        
+        // if the left corner is one complete width off the screen,
+        // move it to the right
+        if (cloud.position.x <= (-1 * cloud.contentSize.width)) {
+            cloud.position = ccp(cloud.position.x +
+                                 2 * cloud.contentSize.width, cloud.position.y);
         }
     }
+
     
     NSMutableArray *offScreenObstacles = nil;
     
