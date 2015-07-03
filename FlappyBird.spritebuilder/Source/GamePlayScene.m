@@ -6,8 +6,9 @@
 
 - (void)initialize
 {
-character = (Character*)[CCBReader load:@"Character"];
-[physicsNode addChild:character];
+    character = (Character*)[CCBReader load:@"Character"];
+    [physicsNode addChild:character];
+    [self addObstacle];
 }
 
 -(void)update:(CCTime)delta
@@ -17,7 +18,7 @@ character = (Character*)[CCBReader load:@"Character"];
 
 -(void)touchBegan:(CCTouch*)touch withEvent:(CCTouchEvent*)event{
     //will get called everytime player touches screen
-
+    [character flap];
     
 }
 
