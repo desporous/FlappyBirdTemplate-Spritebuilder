@@ -118,13 +118,16 @@
 {
     _sinceTouch += delta;
     
+    //rotates the bird's body every time the screen is touched
     character.rotation = clampf(character.rotation, -30.f, 90.f);
     
+    //sets angular velocity into play, not just tangential
     if (character.physicsBody.allowsRotation) {
         float angularVelocity = clampf(character.physicsBody.angularVelocity, -2.f, 1.f);
         character.physicsBody.angularVelocity = angularVelocity;
     }
     
+    //is it has been __ seconds since last touch, velocity downwards will increase (proportionate to amount of time last touched)
     if ((_sinceTouch > 0.5f)) {
         [character.physicsBody applyAngularImpulse:-40000.f*delta];
     }
@@ -177,11 +180,13 @@
     }
 }
 
+//collided with obstacle
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair character:(CCSprite*)character level:(CCNode*)level {
     [self gameOver];
     return TRUE;
 }
 
+//pass through the obstacle
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair character:(CCNode *)character goal:(CCNode *)goal {
     [goal removeFromParent];
     points++;
